@@ -1,0 +1,106 @@
+/* Configuración general */
+body {
+    background-color: #0d021a;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Encabezado con estética Neón */
+header {
+    background-color: #15052a;
+    padding: 30px;
+    border-bottom: 3px solid #a855f7;
+    box-shadow: 0 0 20px #a855f7;
+}
+
+header h1 {
+    margin: 0;
+    color: #c084fc;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px #a855f7;
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #e9d5ff;
+    margin-top: 5px;
+}
+
+/* Contenedor de juegos: los acomoda uno al lado del otro en cuadrícula */
+.juegos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 40px 20px;
+}
+
+/* Tarjeta individual de cada juego */
+.tarjeta-juego {
+    background-color: #1a0933;
+    border: 2px solid #a855f7;
+    border-radius: 12px;
+    width: 280px;
+    padding: 15px;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-juego:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px #a855f7;
+}
+
+/* Portadas de los juegos */
+.tarjeta-juego img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Título del juego */
+.tarjeta-juego h3 {
+    color: #f0abfc;
+    margin: 15px 0 8px 0;
+    font-size: 1.2rem;
+}
+
+/* Descripción del juego */
+.tarjeta-juego p {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+/* Botón de ¡JUGAR AHORA! */
+.btn-jugar {
+    display: inline-block;
+    background-color: #a855f7;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #a855f7;
+    transition: background-color 0.2s ease;
+}
+
+.btn-jugar:hover {
+    background-color: #c084fc;
+}
+
+/* Pie de página */
+footer {
+    background-color: #15052a;
+    padding: 20px;
+    border-top: 1px solid #a855f7;
+    margin-top: 30px;
+}
