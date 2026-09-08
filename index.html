@@ -1,91 +1,285 @@
 
 
-     <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zone Play Gaming</title>
-<link rel="icon" type="image/png" href="./favicon.png">
+    
+    <!-- Favicon para la pestaña -->
+    <link rel="icon" type="image/png" href="./favicon.png">
+    
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
+    <!-- Fondo de Popups Neón estilo Windows -->
+    <div id="popups-container"></div>
+    <div class="crt-overlay"></div>
+
     <header>
-        <h1>ZONE PLAY GAMING</h1>
-        <p>Tu portal de juegos cyberpunk</p>
+        <!-- Icono Interactivo Cambiante con Glitch -->
+        <div class="interactive-icon-wrapper glitch-icon" id="controllerWrapper" onclick="switchController()" onmouseenter="switchController()">
+            <svg viewBox="0 0 300 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- PlayStation -->
+                <g id="ps-controller" class="controller-shape active">
+                    <path d="M75 50 C100 45, 200 45, 225 50 C250 55, 280 85, 270 150 C260 210, 220 210, 200 170 C180 130, 120 130, 100 170 C80 210, 40 210, 30 150 C20 85, 50 55, 75 50 Z" stroke="#00f0ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M70 85 L70 115 M55 100 L85 100" stroke="#bc13fe" stroke-width="6" stroke-linecap="round"></path>
+                    <polygon points="225,82 232,94 218,94" stroke="#00f0ff" stroke-width="4" fill="none"></polygon>
+                    <circle cx="240" cy="100" r="6" stroke="#bc13fe" stroke-width="4" fill="none"></circle>
+                    <path d="M220 110 L230 120 M230 110 L220 120" stroke="#00f0ff" stroke-width="4" stroke-linecap="round"></path>
+                    <rect x="205" y="94" width="11" height="11" stroke="#bc13fe" stroke-width="4" fill="none"></rect>
+                    <circle cx="115" cy="130" r="18" stroke="#00f0ff" stroke-width="4"></circle>
+                    <circle cx="185" cy="130" r="18" stroke="#00f0ff" stroke-width="4"></circle>
+                    <path d="M120 60 L180 60 L175 80 L125 80 Z" stroke="#bc13fe" stroke-width="4"></path>
+                </g>
+                <!-- Xbox -->
+                <g id="xbox-controller" class="controller-shape">
+                    <path d="M70 55 C110 40, 190 40, 230 55 C265 65, 275 110, 255 160 C240 200, 205 190, 185 150 C170 125, 130 125, 115 150 C95 190, 60 200, 45 160 C25 110, 35 65, 70 55 Z" stroke="#00f0ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <circle cx="85" cy="90" r="16" stroke="#00f0ff" stroke-width="4"></circle>
+                    <circle cx="170" cy="125" r="16" stroke="#00f0ff" stroke-width="4"></circle>
+                    <path d="M125 115 L125 141 M112 128 L138 128" stroke="#bc13fe" stroke-width="5" stroke-linecap="round"></path>
+                    <circle cx="215" cy="78" r="5" fill="#bc13fe"></circle>
+                    <circle cx="230" cy="93" r="5" fill="#00f0ff"></circle>
+                    <circle cx="215" cy="108" r="5" fill="#bc13fe"></circle>
+                    <circle cx="200" cy="93" r="5" fill="#00f0ff"></circle>
+                    <circle cx="150" cy="75" r="10" stroke="#00f0ff" stroke-width="3"></circle>
+                    <path d="M144 70 L156 80 M156 70 L144 80" stroke="#00f0ff" stroke-width="2.5"></path>
+                </g>
+                <!-- Switch -->
+                <g id="switch-controller" class="controller-shape">
+                    <rect x="65" y="45" width="70" height="140" rx="35" stroke="#00f0ff" stroke-width="6" fill="none"></rect>
+                    <rect x="165" y="45" width="70" height="140" rx="35" stroke="#bc13fe" stroke-width="6" fill="none"></rect>
+                    <circle cx="100" cy="80" r="14" stroke="#00f0ff" stroke-width="4"></circle>
+                    <circle cx="100" cy="120" r="4" fill="#bc13fe"></circle>
+                    <circle cx="100" cy="140" r="4" fill="#bc13fe"></circle>
+                    <circle cx="90" cy="130" r="4" fill="#bc13fe"></circle>
+                    <circle cx="110" cy="130" r="4" fill="#bc13fe"></circle>
+                    <circle cx="200" cy="135" r="14" stroke="#bc13fe" stroke-width="4"></circle>
+                    <circle cx="200" cy="75" r="4" fill="#00f0ff"></circle>
+                    <circle cx="200" cy="95" r="4" fill="#00f0ff"></circle>
+                    <circle cx="190" cy="85" r="4" fill="#00f0ff"></circle>
+                    <circle cx="210" cy="85" r="4" fill="#00f0ff"></circle>
+                </g>
+                <!-- Arcade -->
+                <g id="arcade-controller" class="controller-shape">
+                    <path d="M40 100 L260 100 L240 180 L60 180 Z" stroke="#00f0ff" stroke-width="6" stroke-linejoin="round" fill="none"></path>
+                    <line x1="95" y1="125" x2="95" y2="70" stroke="#bc13fe" stroke-width="7" stroke-linecap="round"></line>
+                    <circle cx="95" cy="58" r="18" stroke="#00f0ff" stroke-width="5" fill="none"></circle>
+                    <circle cx="155" cy="125" r="9" stroke="#bc13fe" stroke-width="4"></circle>
+                    <circle cx="185" cy="120" r="9" stroke="#00f0ff" stroke-width="4"></circle>
+                    <circle cx="215" cy="125" r="9" stroke="#bc13fe" stroke-width="4"></circle>
+                    <circle cx="150" cy="150" r="9" stroke="#00f0ff" stroke-width="4"></circle>
+                    <circle cx="180" cy="145" r="9" stroke="#bc13fe" stroke-width="4"></circle>
+                    <circle cx="210" cy="150" r="9" stroke="#00f0ff" stroke-width="4"></circle>
+                </g>
+            </svg>
+        </div>
+
+        <h1 class="glitch" data-text="ZONE PLAY GAMING">ZONE PLAY GAMING</h1>
+        <p>Tu portal favorito de juegos online</p>
     </header>
 
-    <main class="juegos-container">
-        <!-- Juego 1 -->
-        <article class="tarjeta-juego">
-            <img src="https://img.gamedistribution.com/5b0abd4c0faa4f5eb190a9a16d5a1b4c-512x384.jpeg" alt="Portada de Moto X3M">
-            <h3>MOTO X3M</h3>
-            <p>Recorre pistas llenas de rampas, explosivos y saltos imposibles sobre tu moto todoterreno.</p>
-            <a href="https://html5.gamedistribution.com/5b0abd4c0faa4f5eb190a9a16d5a1b4c/" target="_blank" rel="noopener noreferrer" class="btn-jugar">¡JUGAR AHORA!</a>
-        </article>
+    <main class="contenedor-juegos">
+        <!-- 2048 -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#2d134d"/>
+                    <rect x="10" y="10" width="37" height="37" rx="5" fill="#bc13fe"/>
+                    <text x="28.5" y="34" fill="#fff" font-weight="bold" font-size="16" text-anchor="middle">2</text>
+                    <rect x="53" y="10" width="37" height="37" rx="5" fill="#00f0ff"/>
+                    <text x="71.5" y="34" fill="#000" font-weight="bold" font-size="16" text-anchor="middle">4</text>
+                    <rect x="10" y="53" width="37" height="37" rx="5" fill="#00f0ff"/>
+                    <text x="28.5" y="77" fill="#000" font-weight="bold" font-size="16" text-anchor="middle">8</text>
+                    <rect x="53" y="53" width="37" height="37" rx="5" fill="#ff007f"/>
+                    <text x="71.5" y="77" fill="#fff" font-weight="bold" font-size="13" text-anchor="middle">2048</text>
+                </svg>
+            </div>
+            <h3>2048 Classic</h3>
+            <p>Une los números iguales hasta alcanzar la cifra de 2048.</p>
+            <a href="https://play2048.co/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
 
-        <!-- Juego 2 -->
-        <article class="tarjeta-juego">
-            <img src="https://img.gamedistribution.com/3d11dfed72a04e00ae9a43ab3fd49bd6-512x384.jpg" alt="Portada de Dan the Man">
-            <h3>DAN THE MAN</h3>
-            <p>Plataformas retro de acción: pelea, salta y derrota enemigos en cada nivel.</p>
-            <a href="https://html5.gamedistribution.com/3d11dfed72a04e00ae9a43ab3fd49bd6/" target="_blank" rel="noopener noreferrer" class="btn-jugar">¡JUGAR AHORA!</a>
-        </article>
+        <!-- Hextris -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#1b0833"/>
+                    <polygon points="50,15 80,32 80,68 50,85 20,68 20,32" fill="none" stroke="#00f0ff" stroke-width="4"/>
+                    <polygon points="50,25 70,36 70,64 50,75 30,64 30,36" fill="none" stroke="#bc13fe" stroke-width="4"/>
+                    <circle cx="50" cy="50" r="8" fill="#ff007f"/>
+                </svg>
+            </div>
+            <h3>Hextris</h3>
+            <p>Un desafiante rompecabezas estilo Tetris hexagonal en HTML5.</p>
+            <a href="https://hextris.io/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
 
-        <!-- Juego 3 -->
-        <article class="tarjeta-juego">
-            <img src="https://img.gamedistribution.com/1092591e1589474cbb6c42cd388440c6-512x384.jpeg" alt="Portada de Time Shooter">
-            <h3>TIME SHOOTER</h3>
-            <p>Disparos en cámara lenta: esquiva balas y elimina a tus enemigos con reflejos perfectos.</p>
-            <a href="https://html5.gamedistribution.com/1092591e1589474cbb6c42cd388440c6/" target="_blank" rel="noopener noreferrer" class="btn-jugar">¡JUGAR AHORA!</a>
-        </article>
+        <!-- Pac-Man -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#120426"/>
+                    <path d="M 40,50 L 65,30 A 25,25 0 1,0 65,70 Z" fill="#ffee00"/>
+                    <circle cx="70" cy="50" r="4" fill="#00f0ff"/>
+                    <circle cx="85" cy="50" r="4" fill="#00f0ff"/>
+                </svg>
+            </div>
+            <h3>Pac-Man HTML5</h3>
+            <p>El clásico arcade directo en el navegador sin redirecciones.</p>
+            <a href="https://pacman.com/en/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
 
-        <!-- Juego 4 -->
-        <article class="tarjeta-juego">
-            <img src="https://img.gamedistribution.com/fc224956ee8d4720b4ab3dfdd01f56bf.jpg" alt="Portada de One More Pass">
-            <h3>ONE MORE PASS</h3>
-            <p>Pon a prueba tus reflejos en este arcade rápido de pases y precisión.</p>
-            <a href="https://html5.gamedistribution.com/fc224956ee8d4720b4ab3dfdd01f56bf/" target="_blank" rel="noopener noreferrer" class="btn-jugar">¡JUGAR AHORA!</a>
-        </article>
+        <!-- Flappy Bird -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#1a0933"/>
+                    <rect x="65" y="0" width="18" height="35" fill="#00f0ff"/>
+                    <rect x="65" y="60" width="18" height="40" fill="#00f0ff"/>
+                    <circle cx="35" cy="45" r="14" fill="#ff007f"/>
+                    <circle cx="40" cy="40" r="4" fill="#fff"/>
+                    <polygon points="45,45 58,48 45,52" fill="#ffee00"/>
+                </svg>
+            </div>
+            <h3>Flappy Bird</h3>
+            <p>Esquiva los tubos en esta versión clásica y rápida de navegador.</p>
+            <a href="https://flappybird.io/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
 
-        <!-- Juego 5 -->
-        <article class="tarjeta-juego">
-            <img src="https://img.gamedistribution.com/b34a92d49e9348d591116bb98fe9dab1-512x384.jpeg" alt="Portada de Bubble Shooter">
-            <h3>BUBBLE SHOOTER</h3>
-            <p>El clásico juego de burbujas: apunta y combina tres o más del mismo color para reventarlas.</p>
-            <a href="https://html5.gamedistribution.com/b34a92d49e9348d591116bb98fe9dab1/" target="_blank" rel="noopener noreferrer" class="btn-jugar">¡JUGAR AHORA!</a>
-        </article>
+        <!-- Paper.io 2 -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#140628"/>
+                    <path d="M10,10 L60,10 L60,60 L40,60 L40,80 L10,80 Z" fill="#bc13fe"/>
+                    <circle cx="60" cy="60" r="8" fill="#00f0ff"/>
+                </svg>
+            </div>
+            <h3>Paper.io 2</h3>
+            <p>Conquista el territorio en un servidor directo y fluido.</p>
+            <a href="https://paper-io.com/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
 
-        <!-- Juego 6 -->
-        <article class="tarjeta-juego">
-            <img src="https://img.gamedistribution.com/3544a1ee19d246e8a875a81f2d90e314-512x384.jpeg" alt="Portada de Stack Ball 2">
-            <h3>STACK BALL 2</h3>
-            <p>Atraviesa plataformas giratorias en caída libre sin romperte en el intento.</p>
-            <a href="https://html5.gamedistribution.com/3544a1ee19d246e8a875a81f2d90e314/" target="_blank" rel="noopener noreferrer" class="btn-jugar">¡JUGAR AHORA!</a>
-        </article>
+        <!-- Tower Stack -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#170530"/>
+                    <rect x="20" y="75" width="60" height="15" rx="3" fill="#bc13fe"/>
+                    <rect x="25" y="55" width="50" height="15" rx="3" fill="#00f0ff"/>
+                    <rect x="35" y="35" width="45" height="15" rx="3" fill="#ff007f"/>
+                </svg>
+            </div>
+            <h3>Tower Stack</h3>
+            <p>Apila los bloques con precisión para construir la torre más alta.</p>
+            <a href="https://www.towergame.app/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
 
-        <!-- Juego 7 -->
-        <article class="tarjeta-juego">
-            <img src="https://img.gamedistribution.com/5fb9c72b2cbd458c9ad4865f036dcc27-512x384.jpeg" alt="Portada de Crazy Shooters 2">
-            <h3>CRAZY SHOOTERS 2</h3>
-            <p>Shooter multijugador en primera persona: crea tu sala y combate contra otros jugadores.</p>
-            <a href="https://html5.gamedistribution.com/5fb9c72b2cbd458c9ad4865f036dcc27/" target="_blank" rel="noopener noreferrer" class="btn-jugar">¡JUGAR AHORA!</a>
-        </article>
+        <!-- Doodle Jump -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#1a0836"/>
+                    <rect x="20" y="80" width="30" height="8" rx="4" fill="#00f0ff"/>
+                    <rect x="55" y="50" width="30" height="8" rx="4" fill="#00f0ff"/>
+                    <circle cx="70" cy="32" r="10" fill="#bc13fe"/>
+                    <rect x="70" y="30" width="10" height="4" fill="#bc13fe"/>
+                </svg>
+            </div>
+            <h3>Doodle Jump Web</h3>
+            <p>Salta lo más alto posible en plataformas sin caer al vacío.</p>
+            <a href="https://doodlejump.net/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
 
-        <!-- Juego 8 -->
-        <article class="tarjeta-juego">
-            <img src="https://img.gamedistribution.com/69d78d071f704fa183d75b4114ae40ec-512x384.jpg" alt="Portada de Basketball Stars">
-            <h3>BASKETBALL STARS</h3>
-            <p>Duelos de baloncesto 1 contra 1: encesta triples y mates para ganar el torneo.</p>
-            <a href="https://html5.gamedistribution.com/69d78d071f704fa183d75b4114ae40ec/" target="_blank" rel="noopener noreferrer" class="btn-jugar">¡JUGAR AHORA!</a>
-        </article>
+        <!-- Snake Arcade -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#110321"/>
+                    <path d="M 20,80 L 50,80 L 50,50 L 80,50 L 80,20" fill="none" stroke="#00f0ff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="80" cy="20" r="7" fill="#bc13fe"/>
+                    <circle cx="20" cy="20" r="5" fill="#ff007f"/>
+                </svg>
+            </div>
+            <h3>Snake Arcade</h3>
+            <p>El clásico juego de la serpiente optimizado para cualquier red.</p>
+            <a href="https://playsnake.org/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Zone Play Gaming - Todos los derechos reservados</p>
+        <p>&copy; 2026 Zone Play Gaming - Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Scripts de Interactividad y Popups Neón Continuous -->
+    <script>
+        // Cambio interactivo del mando
+        const controllers = ['ps-controller', 'xbox-controller', 'switch-controller', 'arcade-controller'];
+        let currentIndex = 0;
+
+        function switchController() {
+            document.getElementById(controllers[currentIndex]).classList.remove('active');
+            currentIndex = (currentIndex + 1) % controllers.length;
+            document.getElementById(controllers[currentIndex]).classList.add('active');
+        }
+
+        // Generador de Ventanas Pop-up de Error Neón de Windows con Mensajes Positivos
+        const messages = [
+            "¡Sigue intentándolo, el éxito te espera!",
+            "¡Logro desbloqueado: Eres genial!",
+            "¡ADVERTENCIA: Nivel alto de diversión!",
+            "¡Tú tienes el control del juego!",
+            "¡ERROR: Demasiado talento detectado!",
+            "¡Subiste de nivel! ¡Felicidades!",
+            "¡Cargando buena vibra para ti!",
+            "¡Presiona Start para cumplir tus sueños!"
+        ];
+
+        const container = document.getElementById('popups-container');
+
+        function createNeonPopup() {
+            const popup = document.createElement('div');
+            popup.className = 'windows-popup';
+            
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Aparecen en TODA la pantalla, incluyendo la parte superior (0vh a 80vh)
+            const top = Math.floor(Math.random() * 80);
+            const left = Math.floor(Math.random() * 68) + 2;
+            
+            popup.style.top = top + 'vh';
+            popup.style.left = left + 'vw';
+
+            popup.innerHTML = `
+                <div class="popup-header">
+                    <span>SYSTEM_NOTICE.EXE</span>
+                    <button class="popup-close">X</button>
+                </div>
+                <div class="popup-body">
+                    <div class="popup-icon">!</div>
+                    <div class="popup-text">${randomMsg}</div>
+                </div>
+            `;
+
+            container.appendChild(popup);
+
+            setTimeout(() => {
+                popup.style.opacity = '0.92';
+                popup.style.transform = 'scale(1)';
+            }, 50);
+
+            setTimeout(() => {
+                popup.style.opacity = '0';
+                popup.style.transform = 'scale(0.8)';
+                setTimeout(() => popup.remove(), 400);
+            }, 3200);
+        }
+
+        setInterval(createNeonPopup, 1600);
+        createNeonPopup();
+    </script>
 </body>
 </html>

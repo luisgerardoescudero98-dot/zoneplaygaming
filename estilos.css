@@ -1,106 +1,339 @@
-/* Configuración general */
-body {
-    background-color: #0d021a;
-    color: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Configuración General Cyberpunk */
+* {
     margin: 0;
     padding: 0;
-    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Encabezado con estética Neón */
+body {
+    background-color: #06020e;
+    background-image: radial-gradient(circle at 50% 20%, #150528 0%, #06020e 85%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* EFECTO DE GLITCH Y SCANLINES EN EL FONDO */
+.crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.4) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* ESTILOS DE VENTANAS DE ERROR WINDOWS NEÓN VIOLETA */
+#popups-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 20; /* Permite que aparezcan por encima de la cabecera */
+}
+
+.windows-popup {
+    position: absolute;
+    width: 240px;
+    background: #2b0b4d;
+    border: 2px solid #bc13fe;
+    box-shadow: 0 0 15px #bc13fe, 0 0 25px rgba(0, 240, 255, 0.3);
+    border-radius: 4px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: auto;
+}
+
+.popup-header {
+    background: linear-gradient(90deg, #bc13fe, #6a0dad);
+    color: #fff;
+    padding: 3px 6px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 1px;
+}
+
+.popup-close {
+    background: #00f0ff;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    width: 14px;
+    height: 14px;
+    font-size: 0.65rem;
+    cursor: pointer;
+    line-height: 14px;
+}
+
+.popup-body {
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(30, 8, 55, 0.95);
+}
+
+.popup-icon {
+    width: 24px;
+    height: 24px;
+    background: #00f0ff;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00f0ff;
+    flex-shrink: 0;
+}
+
+.popup-text {
+    color: #00f0ff;
+    font-size: 0.78rem;
+    font-weight: bold;
+    text-shadow: 0 0 4px rgba(0, 240, 255, 0.5);
+}
+
+/* Encabezado */
 header {
-    background-color: #15052a;
-    padding: 30px;
-    border-bottom: 3px solid #a855f7;
-    box-shadow: 0 0 20px #a855f7;
+    text-align: center;
+    padding: 1.2rem 1rem 1rem 1rem;
+    background: rgba(15, 5, 30, 0.85);
+    border-bottom: 3px solid #bc13fe;
+    box-shadow: 0 0 25px rgba(188, 19, 254, 0.6);
+    position: relative;
+    z-index: 10;
 }
 
-header h1 {
-    margin: 0;
-    color: #c084fc;
-    font-size: 2.5rem;
-    text-shadow: 0 0 10px #a855f7;
+/* Icono Interactivo Reducido */
+.interactive-icon-wrapper {
+    width: 90px;
+    height: 70px;
+    margin: 0 auto 5px auto;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.interactive-icon-wrapper:hover {
+    transform: scale(1.1);
+    animation: iconGlitch 0.2s infinite;
+}
+
+.interactive-icon-wrapper svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 8px #00f0ff) drop-shadow(0 0 14px #bc13fe);
+}
+
+.controller-shape {
+    display: none;
+}
+
+.controller-shape.active {
+    display: block;
+}
+
+/* Animación Glitch del Icono */
+@keyframes iconGlitch {
+    0% { transform: scale(1.1) translate(0); filter: drop-shadow(-3px 0 #00f0ff) drop-shadow(3px 0 #bc13fe); }
+    25% { transform: scale(1.1) translate(-3px, 3px); }
+    50% { transform: scale(1.1) translate(3px, -2px); filter: drop-shadow(3px 0 #00f0ff) drop-shadow(-3px 0 #bc13fe); }
+    75% { transform: scale(1.1) translate(-2px, -3px); }
+    100% { transform: scale(1.1) translate(0); }
+}
+
+/* EFECTO GLITCH EN LAS LETRAS DEL TÍTULO */
+.glitch {
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: #00f0ff;
+    position: relative;
     letter-spacing: 2px;
+    text-shadow: 0 0 10px #00f0ff, 0 0 20px #bc13fe;
+    display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 0, 0, 0);
+}
+
+.glitch::before {
+    left: -2px;
+    text-shadow: 2px 0 #bc13fe;
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: 2px;
+    text-shadow: -2px 0 #00f0ff;
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip: rect(20px, 9999px, 15px, 0); }
+    20% { clip: rect(60px, 9999px, 70px, 0); }
+    40% { clip: rect(10px, 9999px, 85px, 0); }
+    60% { clip: rect(40px, 9999px, 30px, 0); }
+    80% { clip: rect(80px, 9999px, 5px, 0); }
+    100% { clip: rect(30px, 9999px, 50px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip: rect(50px, 9999px, 30px, 0); }
+    20% { clip: rect(10px, 9999px, 80px, 0); }
+    40% { clip: rect(70px, 9999px, 10px, 0); }
+    60% { clip: rect(20px, 9999px, 60px, 0); }
+    80% { clip: rect(90px, 9999px, 40px, 0); }
+    100% { clip: rect(5px, 9999px, 95px, 0); }
 }
 
 header p {
-    color: #e9d5ff;
-    margin-top: 5px;
+    color: #bc13fe;
+    margin-top: 0.2rem;
+    font-size: 1rem;
+    text-shadow: 0 0 8px rgba(188, 19, 254, 0.6);
 }
 
-/* Contenedor de juegos: los acomoda uno al lado del otro en cuadrícula */
-.juegos-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    padding: 40px 20px;
+/* Contenedor de Juegos (Organizado en Filas de 4 con tarjetas compactas) */
+.contenedor-juegos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 20px 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 10;
 }
 
-/* Tarjeta individual de cada juego */
+/* TARJETAS COMPACTAS Y VIOLETAS */
 .tarjeta-juego {
-    background-color: #1a0933;
-    border: 2px solid #a855f7;
-    border-radius: 12px;
-    width: 280px;
-    padding: 15px;
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+    background: #3c096c;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 2px solid #bc13fe;
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .tarjeta-juego:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 25px #a855f7;
+    background: #5a189a;
+    border-color: #00f0ff;
+    box-shadow: 0 0 22px rgba(0, 240, 255, 0.8), 0 0 15px rgba(188, 19, 254, 0.8);
 }
 
-/* Portadas de los juegos */
-.tarjeta-juego img {
+.img-box {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
+    height: 100px; /* Reducido para ahorrar espacio */
+    margin-bottom: 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid #00f0ff;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
 }
 
-/* Título del juego */
+.game-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
 .tarjeta-juego h3 {
-    color: #f0abfc;
-    margin: 15px 0 8px 0;
-    font-size: 1.2rem;
+    color: #00f0ff;
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.7);
 }
 
-/* Descripción del juego */
 .tarjeta-juego p {
-    font-size: 0.9rem;
-    color: #cbd5e1;
-    margin-bottom: 15px;
-    line-height: 1.4;
+    font-size: 0.82rem;
+    color: #f3e8ff;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    font-weight: 500;
 }
 
-/* Botón de ¡JUGAR AHORA! */
-.btn-jugar {
+/* Botón de Jugar */
+.boton-jugar {
     display: inline-block;
-    background-color: #a855f7;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    background: linear-gradient(135deg, #bc13fe 0%, #7b2cbf 100%);
     color: #ffffff;
     text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 6px;
     font-weight: bold;
-    box-shadow: 0 0 10px #a855f7;
-    transition: background-color 0.2s ease;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(188, 19, 254, 0.7);
+    transition: all 0.2s ease;
 }
 
-.btn-jugar:hover {
-    background-color: #c084fc;
+.boton-jugar:hover {
+    background: linear-gradient(135deg, #00f0ff 0%, #0099ff 100%);
+    color: #000;
+    box-shadow: 0 0 16px rgba(0, 240, 255, 1);
 }
 
-/* Pie de página */
+/* Pie de Página */
 footer {
-    background-color: #15052a;
-    padding: 20px;
-    border-top: 1px solid #a855f7;
-    margin-top: 30px;
+    text-align: center;
+    padding: 1rem;
+    background-color: #0d041f;
+    margin-top: auto;
+    font-size: 0.85rem;
+    color: #a491d3;
+    border-top: 2px solid #bc13fe;
+    position: relative;
+    z-index: 10;
+}
+
+/* Adaptabilidad a Pantallas */
+@media (max-width: 900px) {
+    .contenedor-juegos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .contenedor-juegos {
+        grid-template-columns: 1fr;
+    }
+    
+    .glitch {
+        font-size: 1.7rem;
+    }
+    
+    .interactive-icon-wrapper {
+        width: 80px;
+        height: 60px;
+    }
 }
