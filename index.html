@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zone Play Gaming</title>
     
-    <!-- Favicon para la pestaña -->
-    <link rel="icon" type="image/png" href="./favicon.png">
+    <!-- Favicon con parámetro de versión -->
+    <link rel="icon" type="image/png" href="./favicon.png?v=2">
     
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+
+    <!-- Contenedor de Joysticks Cayendo -->
+    <div id="joysticks-rain-container"></div>
 
     <!-- Fondo de Popups Neón estilo Windows -->
     <div id="popups-container"></div>
@@ -82,7 +83,7 @@
     </header>
 
     <main class="contenedor-juegos">
-        <!-- 2048 -->
+        <!-- 1. 2048 -->
         <div class="tarjeta-juego">
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
@@ -102,22 +103,22 @@
             <a href="https://play2048.co/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
         </div>
 
-        <!-- Hextris -->
+        <!-- 2. Asteroids Space -->
         <div class="tarjeta-juego">
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#1b0833"/>
-                    <polygon points="50,15 80,32 80,68 50,85 20,68 20,32" fill="none" stroke="#00f0ff" stroke-width="4"/>
-                    <polygon points="50,25 70,36 70,64 50,75 30,64 30,36" fill="none" stroke="#bc13fe" stroke-width="4"/>
-                    <circle cx="50" cy="50" r="8" fill="#ff007f"/>
+                    <polygon points="50,20 30,70 50,60 70,70" fill="#00f0ff" stroke="#bc13fe" stroke-width="2"/>
+                    <circle cx="50" cy="35" r="4" fill="#ff007f"/>
+                    <line x1="50" y1="15" x2="50" y2="5" stroke="#ff007f" stroke-width="3" stroke-linecap="round"/>
                 </svg>
             </div>
-            <h3>Hextris</h3>
-            <p>Un desafiante rompecabezas estilo Tetris hexagonal en HTML5.</p>
-            <a href="https://hextris.io/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <h3>Asteroids Space</h3>
+            <p>Destruye asteroides en el espacio exterior en tiempo real.</p>
+            <a href="https://freeasteroids.org/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
         </div>
 
-        <!-- Pac-Man -->
+        <!-- 3. Pac-Man HTML5 -->
         <div class="tarjeta-juego">
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
@@ -129,10 +130,10 @@
             </div>
             <h3>Pac-Man HTML5</h3>
             <p>El clásico arcade directo en el navegador sin redirecciones.</p>
-            <a href="https://pacman.com/en/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <a href="https://nicerwritter27.github.io/web-pacman/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
         </div>
 
-        <!-- Flappy Bird -->
+        <!-- 4. Flappy Bird -->
         <div class="tarjeta-juego">
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
@@ -149,21 +150,7 @@
             <a href="https://flappybird.io/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
         </div>
 
-        <!-- Paper.io 2 -->
-        <div class="tarjeta-juego">
-            <div class="img-box">
-                <svg viewBox="0 0 100 100" class="game-svg">
-                    <rect width="100" height="100" rx="10" fill="#140628"/>
-                    <path d="M10,10 L60,10 L60,60 L40,60 L40,80 L10,80 Z" fill="#bc13fe"/>
-                    <circle cx="60" cy="60" r="8" fill="#00f0ff"/>
-                </svg>
-            </div>
-            <h3>Paper.io 2</h3>
-            <p>Conquista el territorio en un servidor directo y fluido.</p>
-            <a href="https://paper-io.com/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
-        </div>
-
-        <!-- Tower Stack -->
+        <!-- 5. Tower Stack -->
         <div class="tarjeta-juego">
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
@@ -178,23 +165,7 @@
             <a href="https://www.towergame.app/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
         </div>
 
-        <!-- Doodle Jump -->
-        <div class="tarjeta-juego">
-            <div class="img-box">
-                <svg viewBox="0 0 100 100" class="game-svg">
-                    <rect width="100" height="100" rx="10" fill="#1a0836"/>
-                    <rect x="20" y="80" width="30" height="8" rx="4" fill="#00f0ff"/>
-                    <rect x="55" y="50" width="30" height="8" rx="4" fill="#00f0ff"/>
-                    <circle cx="70" cy="32" r="10" fill="#bc13fe"/>
-                    <rect x="70" y="30" width="10" height="4" fill="#bc13fe"/>
-                </svg>
-            </div>
-            <h3>Doodle Jump Web</h3>
-            <p>Salta lo más alto posible en plataformas sin caer al vacío.</p>
-            <a href="https://doodlejump.net/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
-        </div>
-
-        <!-- Snake Arcade -->
+        <!-- 6. Snake Arcade -->
         <div class="tarjeta-juego">
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
@@ -208,15 +179,119 @@
             <p>El clásico juego de la serpiente optimizado para cualquier red.</p>
             <a href="https://playsnake.org/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
         </div>
+
+        <!-- 7. Tetris Classic -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#15082a"/>
+                    <rect x="15" y="65" width="16" height="16" fill="#00f0ff" stroke="#0d041f" stroke-width="2"/>
+                    <rect x="33" y="65" width="16" height="16" fill="#00f0ff" stroke="#0d041f" stroke-width="2"/>
+                    <rect x="51" y="65" width="16" height="16" fill="#00f0ff" stroke="#0d041f" stroke-width="2"/>
+                    <rect x="69" y="65" width="16" height="16" fill="#00f0ff" stroke="#0d041f" stroke-width="2"/>
+                    <rect x="33" y="25" width="16" height="16" fill="#bc13fe" stroke="#0d041f" stroke-width="2"/>
+                    <rect x="51" y="25" width="16" height="16" fill="#bc13fe" stroke="#0d041f" stroke-width="2"/>
+                    <rect x="69" y="25" width="16" height="16" fill="#bc13fe" stroke="#0d041f" stroke-width="2"/>
+                    <rect x="51" y="43" width="16" height="16" fill="#bc13fe" stroke="#0d041f" stroke-width="2"/>
+                </svg>
+            </div>
+            <h3>Tetris Classic</h3>
+            <p>Acomoda las piezas que caen y completa líneas sin llenar la pantalla.</p>
+            <a href="https://chvin.github.io/react-tetris/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
+
+        <!-- 8. Space Invaders -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#0f031e"/>
+                    <path d="M30 25 H70 V35 H80 V50 H70 V40 H30 V50 H20 V35 H30 Z" fill="#00f0ff"/>
+                    <circle cx="40" cy="35" r="4" fill="#000"/>
+                    <circle cx="60" cy="35" r="4" fill="#000"/>
+                    <polygon points="50,70 40,85 60,85" fill="#bc13fe"/>
+                    <line x1="50" y1="65" x2="50" y2="55" stroke="#ff007f" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <h3>Space Invaders</h3>
+            <p>Defiende la Tierra destruyendo oleadas de naves alienígenas retro.</p>
+            <a href="https://freeinvaders.org/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
+
+        <!-- 9. Pong JS Arcade (ENLACE TOTALMENTE REEMPLAZADO) -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#120526"/>
+                    <line x1="50" y1="10" x2="50" y2="90" stroke="#bc13fe" stroke-width="2" stroke-dasharray="6,6"/>
+                    <rect x="15" y="25" width="8" height="30" rx="4" fill="#00f0ff"/>
+                    <rect x="77" y="45" width="8" height="30" rx="4" fill="#00f0ff"/>
+                    <circle cx="40" cy="40" r="6" fill="#ff007f"/>
+                </svg>
+            </div>
+            <h3>Pong JS Arcade</h3>
+            <p>El legendario tenis de mesa directo en tu pantalla sin esperas.</p>
+            <a href="https://sethclydesdale.github.io/browser-pong/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
+
+        <!-- 10. Tic Tac Toe Neón -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#110221"/>
+                    <line x1="38" y1="15" x2="38" y2="85" stroke="#bc13fe" stroke-width="3"/>
+                    <line x1="62" y1="15" x2="62" y2="85" stroke="#bc13fe" stroke-width="3"/>
+                    <line x1="15" y1="38" x2="85" y2="38" stroke="#bc13fe" stroke-width="3"/>
+                    <line x1="15" y1="62" x2="85" y2="62" stroke="#bc13fe" stroke-width="3"/>
+                    <path d="M20 20 L32 32 M32 20 L20 32" stroke="#00f0ff" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="50" cy="50" r="7" stroke="#ff007f" stroke-width="3" fill="none"/>
+                    <path d="M68 68 L80 80 M80 68 L68 80" stroke="#00f0ff" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <h3>Tic Tac Toe Neón</h3>
+            <p>El clásico juego de tres en raya con gráficos brillantes y neón moderno.</p>
+            <a href="https://go-xo.com/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
+
+        <!-- 11. Geometry Dash -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#16042d"/>
+                    <line x1="0" y1="75" x2="100" y2="75" stroke="#bc13fe" stroke-width="4"/>
+                    <rect x="25" y="50" width="22" height="22" rx="3" fill="#00f0ff" stroke="#fff" stroke-width="2"/>
+                    <circle cx="32" cy="57" r="2" fill="#000"/>
+                    <circle cx="40" cy="57" r="2" fill="#000"/>
+                    <polygon points="65,75 75,50 85,75" fill="#ff007f"/>
+                </svg>
+            </div>
+            <h3>Geometry Dash</h3>
+            <p>Salta sobre obstáculos al ritmo de la música en un ritmo frenético.</p>
+            <a href="https://geometry-dash-unbanned.github.io/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
+
+        <!-- 12. Doodle Jump Web -->
+        <div class="tarjeta-juego">
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#190633"/>
+                    <rect x="20" y="80" width="30" height="8" rx="2" fill="#00f0ff"/>
+                    <rect x="60" y="50" width="30" height="8" rx="2" fill="#00f0ff"/>
+                    <circle cx="35" cy="65" r="8" fill="#ff007f"/>
+                </svg>
+            </div>
+            <h3>Doodle Jump</h3>
+            <p>Salta verticalmente sin parar sobre plataformas infinitas.</p>
+            <a href="https://doodlejump24.github.io/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+        </div>
+
     </main>
 
     <footer>
         <p>&copy; 2026 Zone Play Gaming - Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Scripts de Interactividad y Popups Neón Continuous -->
+    <!-- Scripts de Interactividad, Lluvia de Mandos y Popups Neón Continuous -->
     <script>
-        // Cambio interactivo del mando
         const controllers = ['ps-controller', 'xbox-controller', 'switch-controller', 'arcade-controller'];
         let currentIndex = 0;
 
@@ -226,10 +301,53 @@
             document.getElementById(controllers[currentIndex]).classList.add('active');
         }
 
-        // Generador de Ventanas Pop-up de Error Neón de Windows con Mensajes Positivos
+        const joystickRainContainer = document.getElementById('joysticks-rain-container');
+        
+        const joystickSVG = `
+            <svg viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25 20 C35 17, 65 17, 75 20 C85 22, 95 35, 90 60 C85 80, 70 80, 65 65 C60 50, 40 50, 35 65 C30 80, 15 80, 10 60 C5 35, 15 22, 25 20 Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M25 35 L25 45 M20 40 L30 40" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="75" cy="35" r="3" fill="currentColor"/>
+                <circle cx="82" cy="42" r="3" fill="currentColor"/>
+                <circle cx="68" cy="42" r="3" fill="currentColor"/>
+                <circle cx="75" cy="49" r="3" fill="currentColor"/>
+                <circle cx="40" cy="52" r="6" stroke="currentColor" stroke-width="3"/>
+                <circle cx="60" cy="52" r="6" stroke="currentColor" stroke-width="3"/>
+            </svg>
+        `;
+
+        function createFallingJoystick() {
+            const joystick = document.createElement('div');
+            joystick.className = 'falling-joystick';
+            joystick.innerHTML = joystickSVG;
+
+            const size = Math.floor(Math.random() * 30) + 30;
+            const left = Math.floor(Math.random() * 95);
+            const duration = Math.random() * 6 + 5;
+            const opacity = (Math.random() * 0.4 + 0.2).toFixed(2);
+            const isCyan = Math.random() > 0.5;
+            const color = isCyan ? '#00f0ff' : '#bc13fe';
+
+            joystick.style.width = size + 'px';
+            joystick.style.height = (size * 0.8) + 'px';
+            joystick.style.left = left + 'vw';
+            joystick.style.animationDuration = duration + 's';
+            joystick.style.opacity = opacity;
+            joystick.style.color = color;
+            joystick.style.filter = `drop-shadow(0 0 6px ${color})`;
+
+            joystickRainContainer.appendChild(joystick);
+
+            setTimeout(() => {
+                joystick.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createFallingJoystick, 450);
+
         const messages = [
             "¡Sigue intentándolo, el éxito te espera!",
-            "¡Logro desbloqueado: Eres genial!",
+            "¡Logro unlocked: Eres genial!",
             "¡ADVERTENCIA: Nivel alto de diversión!",
             "¡Tú tienes el control del juego!",
             "¡ERROR: Demasiado talento detectado!",
@@ -246,7 +364,6 @@
             
             const randomMsg = messages[Math.floor(Math.random() * messages.length)];
             
-            // Aparecen en TODA la pantalla, incluyendo la parte superior (0vh a 80vh)
             const top = Math.floor(Math.random() * 80);
             const left = Math.floor(Math.random() * 68) + 2;
             
