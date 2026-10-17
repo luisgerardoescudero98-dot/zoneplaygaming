@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zone Play Gaming</title>
     
-    <!-- Favicon con parámetro de versión -->
+    <!-- Favicon con parÃ¡metro de versiÃ³n -->
     <link rel="icon" type="image/png" href="./favicon.png?v=2">
     
     <link rel="stylesheet" href="estilos.css">
@@ -15,7 +15,7 @@
     <!-- Contenedor de Joysticks Cayendo -->
     <div id="joysticks-rain-container"></div>
 
-    <!-- Fondo de Popups Neón estilo Windows -->
+    <!-- Fondo de Popups NeÃ³n estilo Windows -->
     <div id="popups-container"></div>
     <div class="crt-overlay"></div>
 
@@ -70,9 +70,9 @@
                     <circle cx="95" cy="58" r="18" stroke="#00f0ff" stroke-width="5" fill="none"></circle>
                     <circle cx="155" cy="125" r="9" stroke="#bc13fe" stroke-width="4"></circle>
                     <circle cx="185" cy="120" r="9" stroke="#00f0ff" stroke-width="4"></circle>
-                    <circle cx="215" cy="125" r="9" stroke="#bc13fe" stroke-width="4"></circle>
+                    <circle cx="215" cy="125" r="9" stroke="#00f0ff" stroke-width="4"></circle>
                     <circle cx="150" cy="150" r="9" stroke="#00f0ff" stroke-width="4"></circle>
-                    <circle cx="180" cy="145" r="9" stroke="#bc13fe" stroke-width="4"></circle>
+                    <circle cx="180" cy="145" r="9" stroke="#00f0ff" stroke-width="4"></circle>
                     <circle cx="210" cy="150" r="9" stroke="#00f0ff" stroke-width="4"></circle>
                 </g>
             </svg>
@@ -80,11 +80,17 @@
 
         <h1 class="glitch" data-text="ZONE PLAY GAMING">ZONE PLAY GAMING</h1>
         <p>Tu portal favorito de juegos online</p>
+
+        <!-- Buscador en tiempo real -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="ðŸ” Buscar entre los 16 juegos..." oninput="filtrarJuegos()">
+        </div>
     </header>
 
-    <main class="contenedor-juegos">
+    <main class="contenedor-juegos" id="contenedorJuegos">
         <!-- 1. 2048 -->
-        <div class="tarjeta-juego">
+        <div class="tarjeta-juego" data-index="1" data-name="2048 classic">
+            <button class="btn-favorito" onclick="toggleFavorito(this, '2048 Classic')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#2d134d"/>
@@ -99,12 +105,13 @@
                 </svg>
             </div>
             <h3>2048 Classic</h3>
-            <p>Une los números iguales hasta alcanzar la cifra de 2048.</p>
-            <a href="https://play2048.co/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <p>Une los nÃºmeros iguales hasta alcanzar la cifra de 2048.</p>
+            <a href="https://play2048.co/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
         <!-- 2. Asteroids Space -->
-        <div class="tarjeta-juego">
+        <div class="tarjeta-juego" data-index="2" data-name="asteroids space">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Asteroids Space')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#1b0833"/>
@@ -115,11 +122,12 @@
             </div>
             <h3>Asteroids Space</h3>
             <p>Destruye asteroides en el espacio exterior en tiempo real.</p>
-            <a href="https://freeasteroids.org/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <a href="https://freeasteroids.org/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
-        <!-- 3. Pac-Man HTML5 -->
-        <div class="tarjeta-juego">
+        <!-- 3. Pacman Retro -->
+        <div class="tarjeta-juego" data-index="3" data-name="pacman classic retro arcade">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Pacman Retro')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#120426"/>
@@ -128,13 +136,14 @@
                     <circle cx="85" cy="50" r="4" fill="#00f0ff"/>
                 </svg>
             </div>
-            <h3>Pac-Man HTML5</h3>
-            <p>El clásico arcade directo en el navegador sin redirecciones.</p>
-            <a href="https://nicerwritter27.github.io/web-pacman/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <h3>Pacman Retro</h3>
+            <p>El clÃ¡sico arcade directo en el navegador sin redirecciones.</p>
+            <a href="https://nicerwritter27.github.io/web-pacman/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
         <!-- 4. Flappy Bird -->
-        <div class="tarjeta-juego">
+        <div class="tarjeta-juego" data-index="4" data-name="flappy bird">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Flappy Bird')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#1a0933"/>
@@ -146,12 +155,13 @@
                 </svg>
             </div>
             <h3>Flappy Bird</h3>
-            <p>Esquiva los tubos en esta versión clásica y rápida de navegador.</p>
-            <a href="https://flappybird.io/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <p>Esquiva los tubos en esta versiÃ³n clÃ¡sica y rÃ¡pida de navegador.</p>
+            <a href="https://flappybird.io/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
         <!-- 5. Tower Stack -->
-        <div class="tarjeta-juego">
+        <div class="tarjeta-juego" data-index="5" data-name="tower stack">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Tower Stack')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#170530"/>
@@ -161,12 +171,13 @@
                 </svg>
             </div>
             <h3>Tower Stack</h3>
-            <p>Apila los bloques con precisión para construir la torre más alta.</p>
-            <a href="https://www.towergame.app/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <p>Apila los bloques con precisiÃ³n para construir la torre mÃ¡s alta.</p>
+            <a href="https://www.towergame.app/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
         <!-- 6. Snake Arcade -->
-        <div class="tarjeta-juego">
+        <div class="tarjeta-juego" data-index="6" data-name="snake arcade">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Snake Arcade')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#110321"/>
@@ -176,12 +187,13 @@
                 </svg>
             </div>
             <h3>Snake Arcade</h3>
-            <p>El clásico juego de la serpiente optimizado para cualquier red.</p>
-            <a href="https://playsnake.org/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <p>El clÃ¡sico juego de la serpiente optimizado para cualquier red.</p>
+            <a href="https://playsnake.org/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
         <!-- 7. Tetris Classic -->
-        <div class="tarjeta-juego">
+        <div class="tarjeta-juego" data-index="7" data-name="tetris classic">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Tetris Classic')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#15082a"/>
@@ -196,12 +208,13 @@
                 </svg>
             </div>
             <h3>Tetris Classic</h3>
-            <p>Acomoda las piezas que caen y completa líneas sin llenar la pantalla.</p>
-            <a href="https://chvin.github.io/react-tetris/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <p>Acomoda las piezas que caen y completa lÃ­neas sin llenar la pantalla.</p>
+            <a href="https://chvin.github.io/react-tetris/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
         <!-- 8. Space Invaders -->
-        <div class="tarjeta-juego">
+        <div class="tarjeta-juego" data-index="8" data-name="space invaders">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Space Invaders')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#0f031e"/>
@@ -213,12 +226,13 @@
                 </svg>
             </div>
             <h3>Space Invaders</h3>
-            <p>Defiende la Tierra destruyendo oleadas de naves alienígenas retro.</p>
-            <a href="https://freeinvaders.org/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <p>Defiende la Tierra destruyendo oleadas de naves alienÃ­genas retro.</p>
+            <a href="https://freeinvaders.org/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
-        <!-- 9. Pong JS Arcade (ENLACE TOTALMENTE REEMPLAZADO) -->
-        <div class="tarjeta-juego">
+        <!-- 9. Pong JS Arcade -->
+        <div class="tarjeta-juego" data-index="9" data-name="pong js arcade">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Pong JS Arcade')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#120526"/>
@@ -230,11 +244,12 @@
             </div>
             <h3>Pong JS Arcade</h3>
             <p>El legendario tenis de mesa directo en tu pantalla sin esperas.</p>
-            <a href="https://sethclydesdale.github.io/browser-pong/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <a href="https://sethclydesdale.github.io/browser-pong/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
-        <!-- 10. Tic Tac Toe Neón -->
-        <div class="tarjeta-juego">
+        <!-- 10. Tic Tac Toe NeÃ³n -->
+        <div class="tarjeta-juego" data-index="10" data-name="tic tac toe neon">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Tic Tac Toe NeÃ³n')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#110221"/>
@@ -247,13 +262,14 @@
                     <path d="M68 68 L80 80 M80 68 L68 80" stroke="#00f0ff" stroke-width="4" stroke-linecap="round"/>
                 </svg>
             </div>
-            <h3>Tic Tac Toe Neón</h3>
-            <p>El clásico juego de tres en raya con gráficos brillantes y neón moderno.</p>
-            <a href="https://go-xo.com/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <h3>Tic Tac Toe NeÃ³n</h3>
+            <p>El clÃ¡sico juego de tres en raya con grÃ¡ficos brillantes y neÃ³n moderno.</p>
+            <a href="https://go-xo.com/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
         <!-- 11. Geometry Dash -->
-        <div class="tarjeta-juego">
+        <div class="tarjeta-juego" data-index="11" data-name="geometry dash">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Geometry Dash')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#16042d"/>
@@ -265,12 +281,13 @@
                 </svg>
             </div>
             <h3>Geometry Dash</h3>
-            <p>Salta sobre obstáculos al ritmo de la música en un ritmo frenético.</p>
-            <a href="https://geometry-dash-unbanned.github.io/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <p>Salta sobre obstÃ¡culos al ritmo de la mÃºsica en un ritmo frenÃ©tico.</p>
+            <a href="https://geometry-dash-unbanned.github.io/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
         <!-- 12. Doodle Jump Web -->
-        <div class="tarjeta-juego">
+        <div class="tarjeta-juego" data-index="12" data-name="doodle jump">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Doodle Jump')">â˜…</button>
             <div class="img-box">
                 <svg viewBox="0 0 100 100" class="game-svg">
                     <rect width="100" height="100" rx="10" fill="#190633"/>
@@ -281,17 +298,160 @@
             </div>
             <h3>Doodle Jump</h3>
             <p>Salta verticalmente sin parar sobre plataformas infinitas.</p>
-            <a href="https://doodlejump24.github.io/" target="_blank" class="boton-jugar">¡JUGAR AHORA!</a>
+            <a href="https://doodlejump24.github.io/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
         </div>
 
+        <!-- 13. Dino Run -->
+        <div class="tarjeta-juego" data-index="13" data-name="dino run t rex chrome">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Dino Run')">â˜…</button>
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#100320"/>
+                    <line x1="10" y1="72" x2="90" y2="72" stroke="#00f0ff" stroke-width="2"/>
+                    <path d="M30 45 h15 v10 h5 v10 h-5 v10 h-5 v-5 h-5 v-15 z" fill="#ff007f"/>
+                    <circle cx="38" cy="48" r="1.5" fill="#fff"/>
+                    <path d="M70 50 v20 M67 55 h6 M73 58 h6" stroke="#bc13fe" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <h3>Dino Run</h3>
+            <p>El clÃ¡sico dinosaurio saltador de Chrome para escapar de obstÃ¡culos.</p>
+            <a href="https://chromedino.com/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
+        </div>
+
+        <!-- 14. Breakout Arcade (Cambiado a juego web arcade directo) -->
+        <div class="tarjeta-juego" data-index="14" data-name="breakout arkanoid arcade brick breaker">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Breakout Arcade')">â˜…</button>
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#140428"/>
+                    <!-- Ladrillos superiores -->
+                    <rect x="12" y="15" width="22" height="10" rx="2" fill="#ff007f"/>
+                    <rect x="39" y="15" width="22" height="10" rx="2" fill="#00f0ff"/>
+                    <rect x="66" y="15" width="22" height="10" rx="2" fill="#bc13fe"/>
+                    <rect x="12" y="28" width="22" height="10" rx="2" fill="#00f0ff"/>
+                    <rect x="39" y="28" width="22" height="10" rx="2" fill="#bc13fe"/>
+                    <rect x="66" y="28" width="22" height="10" rx="2" fill="#ff007f"/>
+                    <!-- Pelota -->
+                    <circle cx="50" cy="55" r="4" fill="#ffee00"/>
+                    <!-- Paleta -->
+                    <rect x="35" y="78" width="30" height="8" rx="4" fill="#00f0ff"/>
+                </svg>
+            </div>
+            <h3>Breakout Arcade</h3>
+            <p>Rompe todos los bloques con tu paleta y evita que caiga la esfera.</p>
+            <a href="https://famobi.com/breakout/?locale=en" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
+        </div>
+
+        <!-- 15. Minesweeper -->
+        <div class="tarjeta-juego" data-index="15" data-name="minesweeper buscaminas">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Minesweeper')">â˜…</button>
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#0d021c"/>
+                    <rect x="18" y="18" width="28" height="28" rx="4" fill="none" stroke="#bc13fe" stroke-width="2"/>
+                    <rect x="54" y="18" width="28" height="28" rx="4" fill="#bc13fe" opacity="0.3"/>
+                    <rect x="18" y="54" width="28" height="28" rx="4" fill="#00f0ff" opacity="0.3"/>
+                    <rect x="54" y="54" width="28" height="28" rx="4" fill="none" stroke="#ff007f" stroke-width="2"/>
+                    <circle cx="68" cy="68" r="5" fill="#ff007f"/>
+                    <text x="32" y="36" fill="#00f0ff" font-weight="bold" font-size="16" text-anchor="middle">1</text>
+                </svg>
+            </div>
+            <h3>Minesweeper</h3>
+            <p>Descubre casillas seguras sin detonar las minas ocultas del sistema.</p>
+            <a href="https://minesweeperonline.com/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
+        </div>
+
+        <!-- 16. Solitaire Classic -->
+        <div class="tarjeta-juego" data-index="16" data-name="solitaire cartas solitario">
+            <button class="btn-favorito" onclick="toggleFavorito(this, 'Solitaire Classic')">â˜…</button>
+            <div class="img-box">
+                <svg viewBox="0 0 100 100" class="game-svg">
+                    <rect width="100" height="100" rx="10" fill="#16052b"/>
+                    <rect x="22" y="25" width="30" height="45" rx="3" fill="#fff" stroke="#00f0ff" stroke-width="2"/>
+                    <text x="37" y="52" fill="#ff007f" font-weight="bold" font-size="20" text-anchor="middle">â™ </text>
+                    <rect x="48" y="32" width="30" height="45" rx="3" fill="#2d0b4d" stroke="#bc13fe" stroke-width="2"/>
+                    <text x="63" y="59" fill="#ffee00" font-weight="bold" font-size="20" text-anchor="middle">â™¥</text>
+                </svg>
+            </div>
+            <h3>Solitaire Classic</h3>
+            <p>Ordena las cartas por palos en este clÃ¡sico juego de solitario.</p>
+            <a href="https://solitaired.com/" target="_blank" class="boton-jugar">Â¡JUGAR AHORA!</a>
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2026 Zone Play Gaming - Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Scripts de Interactividad, Lluvia de Mandos y Popups Neón Continuous -->
+    <!-- Scripts de Buscador, Reordenamiento de Favoritos, Lluvia e Icono Interactivo -->
     <script>
+        // Buscador en tiempo real
+        function filtrarJuegos() {
+            let filtro = document.getElementById('searchInput').value.toLowerCase();
+            let tarjetas = document.querySelectorAll('.tarjeta-juego');
+
+            tarjetas.forEach(tarjeta => {
+                let nombre = tarjeta.getAttribute('data-name');
+                if (nombre.includes(filtro)) {
+                    tarjeta.style.display = "flex";
+                } else {
+                    tarjeta.style.display = "none";
+                }
+            });
+        }
+
+        // FunciÃ³n que mueve los favoritos arriba y regresa los normales a su puesto original
+        function reordenarFavoritos() {
+            let contenedor = document.getElementById('contenedorJuegos');
+            let favoritos = JSON.parse(localStorage.getItem('zone_favoritos')) || [];
+            let tarjetas = Array.from(contenedor.querySelectorAll('.tarjeta-juego'));
+
+            tarjetas.forEach(tarjeta => {
+                let nombreJuego = tarjeta.querySelector('h3').innerText;
+                let btnFav = tarjeta.querySelector('.btn-favorito');
+
+                if (favoritos.includes(nombreJuego)) {
+                    btnFav.classList.add('favorito');
+                    tarjeta.classList.add('es-favorito');
+                } else {
+                    btnFav.classList.remove('favorito');
+                    tarjeta.classList.remove('es-favorito');
+                }
+            });
+
+            // Ordenamiento inteligente: Favoritos arriba, luego orden original por data-index
+            tarjetas.sort((a, b) => {
+                let esFavA = favoritos.includes(a.querySelector('h3').innerText);
+                let esFavB = favoritos.includes(b.querySelector('h3').innerText);
+                let indexA = parseInt(a.getAttribute('data-index'));
+                let indexB = parseInt(b.getAttribute('data-index'));
+
+                if (esFavA && !esFavB) return -1;
+                if (!esFavA && esFavB) return 1;
+                return indexA - indexB;
+            });
+
+            tarjetas.forEach(tarjeta => contenedor.appendChild(tarjeta));
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            reordenarFavoritos();
+        });
+
+        function toggleFavorito(button, gameName) {
+            let favoritos = JSON.parse(localStorage.getItem('zone_favoritos')) || [];
+            
+            if (favoritos.includes(gameName)) {
+                favoritos = favoritos.filter(fav => fav !== gameName);
+            } else {
+                favoritos.push(gameName);
+            }
+
+            localStorage.setItem('zone_favoritos', JSON.stringify(favoritos));
+            reordenarFavoritos();
+        }
+
+        // Icono Cambiante Header
         const controllers = ['ps-controller', 'xbox-controller', 'switch-controller', 'arcade-controller'];
         let currentIndex = 0;
 
@@ -301,8 +461,8 @@
             document.getElementById(controllers[currentIndex]).classList.add('active');
         }
 
+        // Lluvia de joysticks
         const joystickRainContainer = document.getElementById('joysticks-rain-container');
-        
         const joystickSVG = `
             <svg viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M25 20 C35 17, 65 17, 75 20 C85 22, 95 35, 90 60 C85 80, 70 80, 65 65 C60 50, 40 50, 35 65 C30 80, 15 80, 10 60 C5 35, 15 22, 25 20 Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -325,8 +485,7 @@
             const left = Math.floor(Math.random() * 95);
             const duration = Math.random() * 6 + 5;
             const opacity = (Math.random() * 0.4 + 0.2).toFixed(2);
-            const isCyan = Math.random() > 0.5;
-            const color = isCyan ? '#00f0ff' : '#bc13fe';
+            const color = Math.random() > 0.5 ? '#00f0ff' : '#bc13fe';
 
             joystick.style.width = size + 'px';
             joystick.style.height = (size * 0.8) + 'px';
@@ -345,15 +504,16 @@
 
         setInterval(createFallingJoystick, 450);
 
+        // Popups NeÃ³n Windows
         const messages = [
-            "¡Sigue intentándolo, el éxito te espera!",
-            "¡Logro unlocked: Eres genial!",
-            "¡ADVERTENCIA: Nivel alto de diversión!",
-            "¡Tú tienes el control del juego!",
-            "¡ERROR: Demasiado talento detectado!",
-            "¡Subiste de nivel! ¡Felicidades!",
-            "¡Cargando buena vibra para ti!",
-            "¡Presiona Start para cumplir tus sueños!"
+            "Â¡Sigue intentÃ¡ndolo, el Ã©xito te espera!",
+            "Â¡Logro unlocked: Eres genial!",
+            "Â¡ADVERTENCIA: Nivel alto de diversiÃ³n!",
+            "Â¡TÃº tienes el control del juego!",
+            "Â¡ERROR: Demasiado talento detectado!",
+            "Â¡Subiste de nivel! Â¡Felicidades!",
+            "Â¡Cargando buena vibra para ti!",
+            "Â¡Presiona Start para cumplir tus sueÃ±os!"
         ];
 
         const container = document.getElementById('popups-container');
@@ -363,7 +523,6 @@
             popup.className = 'windows-popup';
             
             const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-            
             const top = Math.floor(Math.random() * 80);
             const left = Math.floor(Math.random() * 68) + 2;
             

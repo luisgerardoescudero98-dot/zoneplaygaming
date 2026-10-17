@@ -25,7 +25,7 @@ body {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 1; /* Detrás del contenido principal */
+    z-index: 1;
     overflow: hidden;
 }
 
@@ -42,15 +42,9 @@ body {
 }
 
 @keyframes dropJoystick {
-    0% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(55vh) rotate(180deg);
-    }
-    100% {
-        transform: translateY(110vh) rotate(360deg);
-    }
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(55vh) rotate(180deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
 }
 
 /* EFECTO DE GLITCH Y SCANLINES EN EL FONDO */
@@ -60,10 +54,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(
-        rgba(18, 16, 16, 0) 50%, 
-        rgba(0, 0, 0, 0.4) 50%
-    );
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
     background-size: 100% 4px;
     pointer-events: none;
     z-index: 5;
@@ -158,6 +149,35 @@ header {
     z-index: 10;
 }
 
+/* Barra del Buscador */
+.search-container {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+#searchInput {
+    width: 300px;
+    padding: 9px 16px;
+    background: #110321;
+    border: 2px solid #00f0ff;
+    color: #fff;
+    border-radius: 20px;
+    outline: none;
+    font-size: 0.9rem;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+    border-color: #bc13fe;
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.8);
+}
+
+#searchInput::placeholder {
+    color: #a491d3;
+}
+
 /* Icono Interactivo Reducido */
 .interactive-icon-wrapper {
     width: 90px;
@@ -178,15 +198,9 @@ header {
     filter: drop-shadow(0 0 8px #00f0ff) drop-shadow(0 0 14px #bc13fe);
 }
 
-.controller-shape {
-    display: none;
-}
+.controller-shape { display: none; }
+.controller-shape.active { display: block; }
 
-.controller-shape.active {
-    display: block;
-}
-
-/* Animación Glitch del Icono */
 @keyframes iconGlitch {
     0% { transform: scale(1.1) translate(0); filter: drop-shadow(-3px 0 #00f0ff) drop-shadow(3px 0 #bc13fe); }
     25% { transform: scale(1.1) translate(-3px, 3px); }
@@ -278,7 +292,8 @@ header p {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .tarjeta-juego:hover {
@@ -286,6 +301,38 @@ header p {
     background: #5a189a;
     border-color: #00f0ff;
     box-shadow: 0 0 22px rgba(0, 240, 255, 0.8), 0 0 15px rgba(188, 19, 254, 0.8);
+}
+
+/* Resaltado cuando el juego es favorito */
+.tarjeta-juego.es-favorito {
+    border-color: #ffee00;
+    box-shadow: 0 0 20px rgba(255, 238, 0, 0.6);
+}
+
+/* Botón de Estrella de Favoritos */
+.btn-favorito {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #bc13fe;
+    color: #666;
+    font-size: 1.1rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 5;
+}
+
+.btn-favorito.favorito {
+    color: #ffee00;
+    text-shadow: 0 0 8px #ffee00;
+    border-color: #ffee00;
 }
 
 .img-box {
@@ -371,5 +418,9 @@ footer {
     .interactive-icon-wrapper {
         width: 80px;
         height: 60px;
+    }
+
+    #searchInput {
+        width: 240px;
     }
 }
